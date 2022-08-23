@@ -21,6 +21,20 @@ public class Bullet : MonoBehaviour
         switch(_type)
         {
             case BulletType.Player:
+                {
+                    var enList = GameManager.Instance.Enemies;
+                    foreach (var enemy in enList)
+                    {
+                        if (this.transform.position.x - this.transform.localScale.x / 2 < enemy.transform.position.x &&
+                            this.transform.position.x + this.transform.localScale.x / 2 > enemy.transform.position.x &&
+                            this.transform.position.y - this.transform.localScale.y / 2 < enemy.transform.position.y &&
+                            this.transform.position.y + this.transform.localScale.y / 2 > enemy.transform.position.y)
+                        {
+                            enemy.Damage();
+                            Destroy(gameObject);
+                        }
+                    }
+                }
                 break;
 
             case BulletType.Enemy:
