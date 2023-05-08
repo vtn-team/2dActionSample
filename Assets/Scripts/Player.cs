@@ -5,8 +5,10 @@ using UnityEngine;
 public class Player : Character
 {
     [SerializeField] float _speed = 5.0f;
+    [SerializeField] float _extinc = 0.3f;
+    [SerializeField] float _scale = 10.0f;
+    [SerializeField] float _jumpPow = 10.0f;
     float _jumpY = 0.0f;
-    float _jump = 0.0f;
     float _grav = 0.0f;
 
     private void Start()
@@ -29,19 +31,16 @@ public class Player : Character
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _jumpY = 20.0f;
-                _jump = 0.0f;
+                _jumpY = _jumpPow;
                 _grav = 0.0f;
             }
         }
         else
         {
             _grav += Time.deltaTime;
-            if (_jump < 0.3f)
-            {
-                _jump += Time.deltaTime;
-            }
-            float y = -4.0f + _jumpY * _jump -9.81f * _grav;
+            _jumpY *= 1.0f - Time.deltaTime * _extinc;
+            float y = this.transform.position.y;
+            y += (_jumpY - 9.81f * _grav) * Time.deltaTime * _scale;
             if(y < -4.0f)
             {
                 y = -4;
