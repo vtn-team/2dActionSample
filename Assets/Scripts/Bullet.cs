@@ -14,6 +14,21 @@ public class Bullet : MonoBehaviour
     [SerializeField] BulletType _type;
     [SerializeField] Vector3 _power;
 
+    public void SetVector(Vector3 vec)
+    {
+        _power = vec * _power.magnitude;
+    }
+
+    bool isHitRect(Transform target)
+    {
+        if(Mathf.Abs(this.transform.position.x - target.transform.position.x) < (target.localScale.x + this.transform.localScale.x) / 2 &&
+           Mathf.Abs(this.transform.position.y - target.transform.position.y) < (target.localScale.y + this.transform.localScale.y) / 2)
+        {
+            return true;
+        }
+        return false;
+    }
+
     void Update()
     {
         this.transform.position += _power * Time.deltaTime;
@@ -25,10 +40,7 @@ public class Bullet : MonoBehaviour
                     var enList = GameManager.Instance.Enemies;
                     foreach (var enemy in enList)
                     {
-                        if (this.transform.position.x - this.transform.localScale.x / 2 < enemy.transform.position.x &&
-                            this.transform.position.x + this.transform.localScale.x / 2 > enemy.transform.position.x &&
-                            this.transform.position.y - this.transform.localScale.y / 2 < enemy.transform.position.y &&
-                            this.transform.position.y + this.transform.localScale.y / 2 > enemy.transform.position.y)
+                        if (isHitRect(enemy.transform))
                         {
                             enemy.Damage();
                             Destroy(gameObject);
@@ -40,10 +52,7 @@ public class Bullet : MonoBehaviour
             case BulletType.Enemy:
                 {
                     var player = GameManager.Instance.Player;
-                    if (this.transform.position.x - this.transform.localScale.x / 2 < player.transform.position.x &&
-                        this.transform.position.x + this.transform.localScale.x / 2 > player.transform.position.x &&
-                        this.transform.position.y - this.transform.localScale.y / 2 < player.transform.position.y &&
-                        this.transform.position.y + this.transform.localScale.y / 2 > player.transform.position.y)
+                    if (isHitRect(player.transform))
                     {
                         player.Damage();
                         Destroy(gameObject);
