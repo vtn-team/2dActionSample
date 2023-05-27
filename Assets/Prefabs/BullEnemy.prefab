@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4594600162150029794}
   - component: {fileID: 5391195489422825576}
-  - component: {fileID: 1349905989315364353}
+  - component: {fileID: 1181829799064442819}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: BullEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.7169812, g: 0.4019843, b: 0.30888808, a: 1}
+  m_Color: {r: 0.6415094, g: 0.14804062, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1349905989315364353
+--- !u!114 &1181829799064442819
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,13 +94,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7243879235689712877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 910c1a576c7aeb9478a0cd8dd64ae23a, type: 3}
+  m_Script: {fileID: 11500000, guid: e59e7e63b9646ea449729becade3cf72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 3
   _isKnockback: 0
-  _knockbackVec: {x: 3, y: 0, z: 0}
+  _knockbackVec: {x: 1, y: 0, z: 0}
   _player: {fileID: 0}
-  _prefab: {fileID: 4995073482751692893, guid: 4a3658e98c4dfa84fb5f406b0b535d6a, type: 3}
   _searchRadius: 10
-  _interval: 3
+  _atkTimer: 3
+  _speed: 5

@@ -22,6 +22,7 @@ public class PlayerBullet : MonoBehaviour
                 Mathf.Abs(this.transform.position.y - enemy.transform.transform.position.y) < (enemy.transform.localScale.y + this.transform.localScale.y) / 2)
             {
                 enemy.Damage();
+                GameManager.Instance.HitStop(0.08f);
                 Destroy(gameObject);
             }
         }

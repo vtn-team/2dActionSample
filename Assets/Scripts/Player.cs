@@ -18,6 +18,9 @@ public class Player : Character
 
     void Update()
     {
+        KnockbackUpdate();
+        GameManager.Instance.UpdateHitStop();
+
         if (_hp <= 0)
         {
             //ゲームオーバー
@@ -49,5 +52,11 @@ public class Player : Character
             }
             this.transform.position = new Vector3(this.transform.position.x, y, this.transform.position.z);
         }
+    }
+    public override void Damage(int dmg = 1)
+    {
+        if (_isKnockback) return;
+
+        base.Damage(dmg);
     }
 }
